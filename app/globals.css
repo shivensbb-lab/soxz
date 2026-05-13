@@ -1,7 +1,6 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 
 body {
-  background: #F8F6F2;
-  color: #111111;
   -webkit-font-smoothing: antialiased;
 }

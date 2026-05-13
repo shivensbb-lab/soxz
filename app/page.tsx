@@ -8,48 +8,42 @@ const STYLES = [
     desc: 'Your initials, woven into premium ribbed cotton.',
     price: 28,
     tag: 'Bestseller',
-    img: 'https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=600&q=80',
-    bg: 'bg-green-800',
+    img: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80',
   },
   {
     name: 'Celestial Strides',
     desc: 'Constellations mapped across midnight navy.',
     price: 32,
     tag: 'Fan Favourite',
-    img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80',
-    bg: 'bg-indigo-950',
+    img: 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80',
   },
   {
     name: "The Navigator's Compass",
     desc: 'Anchors, waves, and open-sea motifs.',
     price: 30,
     tag: null,
-    img: 'https://images.unsplash.com/photo-1556906781-9a412961a28c?w=600&q=80',
-    bg: 'bg-blue-900',
+    img: 'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&q=80',
   },
   {
     name: 'Urban Pulse',
     desc: 'City grids and transit maps.',
     price: 30,
     tag: null,
-    img: 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=600&q=80',
-    bg: 'bg-zinc-400',
+    img: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80',
   },
   {
     name: 'Botanical Ink',
     desc: 'Hand-drawn ferns and florals on blush pink.',
     price: 32,
     tag: 'New',
-    img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80',
-    bg: 'bg-rose-300',
+    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80',
   },
   {
     name: 'The Manifesto Tab',
     desc: '"never for everyone" — woven in jet black.',
     price: 35,
     tag: 'Signature',
-    img: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&q=80',
-    bg: 'bg-zinc-900',
+    img: 'https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=600&q=80',
   },
 ]
 
@@ -57,29 +51,29 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="min-h-[90vh] bg-white flex items-center">
+      <section className="min-h-[90vh] bg-white dark:bg-[#111111] flex items-center transition-colors">
         <div className="max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-20">
           <div>
-            <div className="border-t-4 border-black pt-8 mb-8">
-              <h1 className="text-[13vw] sm:text-[8vw] lg:text-[7vw] font-black tracking-tighter leading-none uppercase text-black">SOXZ</h1>
+            <div className="border-t-4 border-black dark:border-white pt-8 mb-8">
+              <h1 className="text-[13vw] sm:text-[8vw] lg:text-[7vw] font-black tracking-tighter leading-none uppercase text-black dark:text-white">SOXZ</h1>
               <p className="text-base sm:text-xl tracking-[0.35em] text-gray-500 mt-3 uppercase">for our feet</p>
             </div>
-            <p className="text-lg text-gray-600 leading-relaxed mb-4 max-w-md">
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-md">
               Premium personalised socks designed around you — your stories, your style, your identity.
             </p>
             <p className="text-sm tracking-[0.25em] text-gray-400 uppercase mb-10">never for everyone, but for you</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/shop" className="bg-black text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+              <Link href="/shop" className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
                 Shop Styles <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/custom" className="border-2 border-black text-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors text-center">
+              <Link href="/custom" className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-center">
                 Design Custom
               </Link>
             </div>
           </div>
           <div className="relative h-[500px] hidden lg:block">
             <Image
-              src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=900&q=85"
+              src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=900&q=85"
               alt="Premium socks"
               fill
               className="object-cover"
@@ -90,7 +84,7 @@ export default function HomePage() {
       </section>
 
       {/* The pitch — dark section */}
-      <section className="bg-[#111111] text-white py-24 px-6">
+      <section className="bg-[#111111] dark:bg-black text-white py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs tracking-[0.4em] text-gray-500 uppercase mb-6">Why we exist</p>
           <h2 className="text-3xl sm:text-5xl font-black leading-tight mb-8 text-white">
@@ -104,20 +98,20 @@ export default function HomePage() {
       </section>
 
       {/* Styles grid */}
-      <section className="py-24 px-6 bg-[#F8F6F2]">
+      <section className="py-24 px-6 bg-[#F8F6F2] dark:bg-[#0f0f0f] transition-colors">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-12">
             <div>
               <p className="text-xs tracking-[0.4em] text-gray-400 uppercase mb-2">The Collection</p>
-              <h2 className="text-4xl sm:text-5xl font-black uppercase text-black">Premade Styles</h2>
+              <h2 className="text-4xl sm:text-5xl font-black uppercase text-black dark:text-white">Premade Styles</h2>
             </div>
-            <Link href="/shop" className="text-sm font-bold uppercase tracking-widest border-b-2 border-black pb-1 hover:text-gray-500 hover:border-gray-400 transition-colors hidden sm:block">
+            <Link href="/shop" className="text-sm font-bold uppercase tracking-widest border-b-2 border-black dark:border-white pb-1 text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 hover:border-gray-400 transition-colors hidden sm:block">
               View all →
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {STYLES.map((style) => (
-              <Link key={style.name} href="/shop" className="group bg-white hover:shadow-lg transition-all duration-300 block">
+              <Link key={style.name} href="/shop" className="group bg-white dark:bg-[#1a1a1a] hover:shadow-lg transition-all duration-300 block">
                 <div className="relative h-56 overflow-hidden">
                   <Image
                     src={style.img}
@@ -133,9 +127,9 @@ export default function HomePage() {
                   )}
                 </div>
                 <div className="p-5">
-                  <h3 className="font-black text-base uppercase tracking-wide mb-1 text-black">{style.name}</h3>
-                  <p className="text-sm text-gray-500 mb-3">{style.desc}</p>
-                  <p className="font-black text-lg text-black">${style.price}</p>
+                  <h3 className="font-black text-base uppercase tracking-wide mb-1 text-black dark:text-white">{style.name}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{style.desc}</p>
+                  <p className="font-black text-lg text-black dark:text-white">${style.price}</p>
                 </div>
               </Link>
             ))}
@@ -144,7 +138,7 @@ export default function HomePage() {
       </section>
 
       {/* Packaging */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-24 px-6 bg-white dark:bg-[#111111] transition-colors">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="grid grid-cols-2 gap-4">
             <div className="relative h-64">
@@ -168,10 +162,10 @@ export default function HomePage() {
           </div>
           <div>
             <p className="text-xs tracking-[0.4em] text-gray-400 uppercase mb-4">The Experience</p>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase leading-tight mb-6 text-black">
+            <h2 className="text-3xl sm:text-4xl font-black uppercase leading-tight mb-6 text-black dark:text-white">
               Unboxing is part<br />of the gift.
             </h2>
-            <p className="text-gray-600 text-base leading-relaxed mb-8">
+            <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-8">
               We replace standard shipping with a premium tactile vessel designed for shelf-display and reuse. Every order includes a handwritten note from the artisan who packed it.
             </p>
             <ul className="space-y-3">
@@ -181,8 +175,8 @@ export default function HomePage() {
                 'Tissue paper wrap with SOXZ seal',
                 'Built to display, not throw away',
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-sm text-gray-700">
-                  <span className="w-1.5 h-1.5 bg-black rounded-full flex-shrink-0" />
+                <li key={item} className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+                  <span className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full flex-shrink-0" />
                   {item}
                 </li>
               ))}
@@ -192,7 +186,7 @@ export default function HomePage() {
       </section>
 
       {/* Custom CTA */}
-      <section className="bg-[#111111] text-white py-32 px-6">
+      <section className="bg-[#111111] dark:bg-black text-white py-32 px-6">
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <p className="text-xs tracking-[0.4em] text-gray-500 uppercase mb-6">Go Further</p>
@@ -208,7 +202,7 @@ export default function HomePage() {
           </div>
           <div className="relative h-80">
             <Image
-              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=80"
+              src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=700&q=80"
               alt="Custom socks"
               fill
               className="object-cover"
@@ -219,19 +213,19 @@ export default function HomePage() {
       </section>
 
       {/* Founders */}
-      <section className="py-24 px-6 bg-[#F8F6F2]">
+      <section className="py-24 px-6 bg-[#F8F6F2] dark:bg-[#0f0f0f] transition-colors">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs tracking-[0.4em] text-gray-400 uppercase mb-4">The Founders</p>
-          <h2 className="text-3xl sm:text-4xl font-black uppercase mb-12 text-black">Built by two people<br />who hate boring socks.</h2>
+          <h2 className="text-3xl sm:text-4xl font-black uppercase mb-12 text-black dark:text-white">Built by two people<br />who hate boring socks.</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               { name: 'Viraj Sanghi', quote: 'Our goal is to create a street where bold statement pieces are mixed with simple clothing — creating our brand.', letter: 'V' },
               { name: 'Shiven Balchandani', quote: 'Socks are the most normal gift in the world. We want to make people feel they are getting something truly special.', letter: 'S' },
             ].map((f) => (
-              <div key={f.name} className="bg-white p-8 text-left">
-                <div className="w-12 h-12 bg-black text-white flex items-center justify-center font-black text-lg mb-6">{f.letter}</div>
-                <p className="text-gray-600 italic leading-relaxed mb-5 text-sm">&quot;{f.quote}&quot;</p>
-                <p className="font-black text-sm uppercase tracking-widest text-black">— {f.name}</p>
+              <div key={f.name} className="bg-white dark:bg-[#1a1a1a] p-8 text-left">
+                <div className="w-12 h-12 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-black text-lg mb-6">{f.letter}</div>
+                <p className="text-gray-600 dark:text-gray-300 italic leading-relaxed mb-5 text-sm">&quot;{f.quote}&quot;</p>
+                <p className="font-black text-sm uppercase tracking-widest text-black dark:text-white">— {f.name}</p>
                 <p className="text-xs text-gray-400 tracking-wider uppercase mt-1">Co-Founder</p>
               </div>
             ))}
@@ -240,12 +234,12 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 px-6 bg-white text-center">
+      <section className="py-24 px-6 bg-white dark:bg-[#111111] text-center transition-colors">
         <div className="max-w-2xl mx-auto">
-          <div className="border-t-4 border-b-4 border-black py-12">
-            <h2 className="text-4xl sm:text-5xl font-black uppercase mb-3 text-black">Your feet.<br />Your story.</h2>
+          <div className="border-t-4 border-b-4 border-black dark:border-white py-12">
+            <h2 className="text-4xl sm:text-5xl font-black uppercase mb-3 text-black dark:text-white">Your feet.<br />Your story.</h2>
             <p className="text-gray-500 tracking-[0.3em] text-sm uppercase mb-8">never for everyone, but for you</p>
-            <Link href="/shop" className="inline-flex items-center gap-2 bg-black text-white px-10 py-4 text-sm font-black uppercase tracking-widest hover:bg-gray-800 transition-colors">
+            <Link href="/shop" className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-10 py-4 text-sm font-black uppercase tracking-widest hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
               Shop Now <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
