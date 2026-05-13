@@ -1,18 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, X, Minus, Plus, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/components/CartContext'
+import SockImage from '@/components/SockImage'
 
+// img: put your exported Canva sock photo here (e.g. /socks/monogram.jpg)
+// color: fallback brand color shown until the real photo is added
 const STYLES = [
   {
     name: 'The Monogram Edition',
     desc: 'Your initials woven into premium ribbed cotton. Understated, personal, unmistakable.',
     price: 28,
     tag: 'Bestseller',
-    img: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80',
+    img: '/socks/monogram.jpg',
+    color: '#1a3a2a',
     theme: 'Embroidered initials',
   },
   {
@@ -20,7 +23,8 @@ const STYLES = [
     desc: 'Constellations mapped across midnight navy. For those who navigate by stars.',
     price: 32,
     tag: 'Fan Favourite',
-    img: 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80',
+    img: '/socks/celestial.jpg',
+    color: '#0d1b4b',
     theme: 'Galaxy & stars',
   },
   {
@@ -28,7 +32,8 @@ const STYLES = [
     desc: 'Anchors, waves, and open-sea motifs. Built for the explorer in you.',
     price: 30,
     tag: null,
-    img: 'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&q=80',
+    img: '/socks/compass.jpg',
+    color: '#0f2d40',
     theme: 'Nautical & ocean',
   },
   {
@@ -36,7 +41,8 @@ const STYLES = [
     desc: 'City grids and transit maps. Wear the city you love.',
     price: 30,
     tag: null,
-    img: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80',
+    img: '/socks/urban.jpg',
+    color: '#3a3a3a',
     theme: 'City skyline',
   },
   {
@@ -44,7 +50,8 @@ const STYLES = [
     desc: 'Hand-drawn ferns, botanicals, and florals on blush pink.',
     price: 32,
     tag: 'New',
-    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80',
+    img: '/socks/botanical.jpg',
+    color: '#c97b8a',
     theme: 'Botanical garden',
   },
   {
@@ -52,7 +59,8 @@ const STYLES = [
     desc: '"never for everyone" — woven into jet black. A statement with every step.',
     price: 35,
     tag: 'Signature',
-    img: 'https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=600&q=80',
+    img: '/socks/manifesto.jpg',
+    color: '#111111',
     theme: 'Dark minimal',
   },
   {
@@ -60,7 +68,8 @@ const STYLES = [
     desc: 'Moon phases across charcoal. Track the lunar cycle from your ankles.',
     price: 32,
     tag: null,
-    img: 'https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=600&q=80',
+    img: '/socks/moon.jpg',
+    color: '#2a2a2a',
     theme: 'Moon phases',
   },
   {
@@ -68,7 +77,8 @@ const STYLES = [
     desc: 'Bold retro stripes in warm amber and rust. Decades of style, one pair.',
     price: 30,
     tag: 'Trending',
-    img: 'https://images.unsplash.com/photo-1461360228754-6e81c478b882?w=600&q=80',
+    img: '/socks/retro.jpg',
+    color: '#b5601a',
     theme: 'Retro vibes',
   },
   {
@@ -76,7 +86,8 @@ const STYLES = [
     desc: 'Your city. Your GPS coordinates. Your story printed to last.',
     price: 35,
     tag: null,
-    img: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?w=600&q=80',
+    img: '/socks/coordinates.jpg',
+    color: '#4a4a4a',
     theme: 'World map',
   },
 ]
@@ -99,7 +110,7 @@ function OrderModal({ style, onClose }: { style: Style; onClose: () => void }) {
 
         {/* Image */}
         <div className="relative h-52 sm:h-auto sm:w-48 flex-shrink-0">
-          <Image src={style.img} alt={style.name} fill className="object-cover" unoptimized />
+          <SockImage src={style.img} alt={style.name} fallbackColor={style.color} fallbackLabel={style.name} className="h-full w-full" />
           {style.tag && (
             <span className="absolute top-3 left-3 text-[9px] font-black uppercase tracking-widest bg-black text-white px-2 py-1">
               {style.tag}
@@ -179,12 +190,12 @@ export default function ShopPage() {
               <div key={style.name} className="group bg-white dark:bg-[#1a1a1a] hover:shadow-lg transition-all duration-300 flex flex-col">
                 {/* Clickable image area → opens modal */}
                 <button onClick={() => setModal(style)} className="relative h-60 overflow-hidden text-left block w-full">
-                  <Image
+                  <SockImage
                     src={style.img}
                     alt={style.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    unoptimized
+                    fallbackColor={style.color}
+                    fallbackLabel={style.theme}
+                    className="group-hover:scale-105 transition-transform duration-500"
                   />
                   {style.tag && (
                     <span className="absolute top-3 left-3 text-[10px] font-black uppercase tracking-widest bg-black text-white px-2 py-1">
