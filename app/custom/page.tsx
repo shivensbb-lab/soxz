@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Upload, CheckCircle } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Upload, CheckCircle, X } from 'lucide-react'
 
 const SOCK_TYPES = ['Crew (ankle-high)', 'Mid-calf', 'Knee-high', 'No-show']
 const QUANTITIES = ['1 pair', '2 pairs', '3 pairs', '5 pairs', '10+ pairs']
@@ -9,6 +9,23 @@ const QUANTITIES = ['1 pair', '2 pairs', '3 pairs', '5 pairs', '10+ pairs']
 export default function CustomPage() {
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', idea: '', type: '', qty: '', gift: false })
+  const [file, setFile] = useState<File | null>(null)
+  const [preview, setPreview] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  function handleFile(f: File | null) {
+    if (!f) return
+    setFile(f)
+    const reader = new FileReader()
+    reader.onload = (e) => setPreview(e.target?.result as string)
+    reader.readAsDataURL(f)
+  }
+
+  function handleDrop(e: React.DragEvent) {
+    e.preventDefault()
+    const f = e.dataTransfer.files[0]
+    if (f) handleFile(f)
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -118,10 +135,39 @@ export default function CustomPage() {
               <label htmlFor="gift" className="text-sm text-gray-600">This is a gift — include gift message card</label>
             </div>
 
-            <div className="border-2 border-dashed border-black/20 p-6 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-black transition-colors text-center">
-              <Upload className="w-6 h-6 text-gray-400" />
-              <p className="text-sm font-bold">Upload reference image (optional)</p>
-              <p className="text-xs text-gray-400">Photo, logo, sketch — anything helps</p>
+            <div
+              className="border-2 border-dashed border-black/20 hover:border-black transition-colors text-center cursor-pointer"
+              onClick={() => fileInputRef.current?.click()}
+              onDrop={handleDrop}
+              onDragOver={(e) => e.preventDefault()}
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => handleFile(e.target.files?.[0] ?? null)}
+              />
+              {preview ? (
+                <div className="relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={preview} alt="Reference" className="w-full max-h-48 object-contain" />
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); setFile(null); setPreview(null) }}
+                    className="absolute top-2 right-2 bg-black text-white rounded-full p-1 hover:bg-gray-700"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                  <p className="text-xs text-gray-500 py-2">{file?.name}</p>
+                </div>
+              ) : (
+                <div className="p-6 flex flex-col items-center justify-center gap-2">
+                  <Upload className="w-6 h-6 text-gray-400" />
+                  <p className="text-sm font-bold">Upload reference image (optional)</p>
+                  <p className="text-xs text-gray-400">Photo, logo, sketch — drag & drop or click</p>
+                </div>
+              )}
             </div>
 
             <button type="submit"
