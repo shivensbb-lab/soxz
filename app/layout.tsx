@@ -7,7 +7,7 @@ import ClientProviders from "@/components/ClientProviders"
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SOXZ — For Our Feet",
+  title: "SOXZ — Wear Your Story",
   description: "Never for everyone, but for you. Premium personalised socks. Custom designs or handpicked styles.",
 }
 
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <span className="font-black text-lg text-black dark:text-white tracking-widest uppercase">SOXZ</span>
-                <span className="ml-2 text-xs tracking-wider text-gray-400">for our feet</span>
+                <span className="ml-2 text-xs tracking-wider text-gray-400">wear your story</span>
               </div>
               <p className="text-xs text-gray-400 tracking-widest uppercase text-center">never for everyone, but for you</p>
               <p className="text-xs text-gray-400">© 2026 Soxz. Founded by Viraj & Shiven.</p>

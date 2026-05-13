@@ -56,7 +56,7 @@ export default function HomePage() {
           <div>
             <div className="border-t-4 border-black dark:border-white pt-8 mb-8">
               <h1 className="text-[13vw] sm:text-[8vw] lg:text-[7vw] font-black tracking-tighter leading-none uppercase text-black dark:text-white">SOXZ</h1>
-              <p className="text-base sm:text-xl tracking-[0.35em] text-gray-500 mt-3 uppercase">for our feet</p>
+              <p className="text-base sm:text-xl tracking-[0.35em] text-gray-500 mt-3 uppercase">wear your story</p>
             </div>
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-md">
               Premium personalised socks designed around you — your stories, your style, your identity.

@@ -31,7 +31,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex flex-col leading-none">
           <span className="font-black text-xl tracking-widest uppercase text-black dark:text-white">SOXZ</span>
-          <span className="text-[9px] tracking-[0.25em] text-gray-500 uppercase">for our feet</span>
+          <span className="text-[9px] tracking-[0.25em] text-gray-500 uppercase">wear your story</span>
         </Link>
 
         {/* Desktop nav */}
