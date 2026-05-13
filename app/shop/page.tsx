@@ -1,6 +1,10 @@
-import Link from 'next/link'
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight, X, Minus, Plus, ShoppingBag } from 'lucide-react'
+import { useCart } from '@/components/CartContext'
 
 const STYLES = [
   {
@@ -77,9 +81,86 @@ const STYLES = [
   },
 ]
 
+type Style = typeof STYLES[0]
+
+function OrderModal({ style, onClose }: { style: Style; onClose: () => void }) {
+  const [qty, setQty] = useState(1)
+  const { add } = useCart()
+
+  function handleAdd() {
+    for (let i = 0; i < qty; i++) add({ name: style.name, price: style.price, img: style.img })
+    onClose()
+  }
+
+  return (
+    <div className="fixed inset-0 z-40 flex items-center justify-center px-4">
+      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
+      <div className="relative bg-white dark:bg-[#111111] w-full max-w-lg shadow-2xl z-50 flex flex-col sm:flex-row overflow-hidden max-h-[90vh]">
+
+        {/* Image */}
+        <div className="relative h-52 sm:h-auto sm:w-48 flex-shrink-0">
+          <Image src={style.img} alt={style.name} fill className="object-cover" unoptimized />
+          {style.tag && (
+            <span className="absolute top-3 left-3 text-[9px] font-black uppercase tracking-widest bg-black text-white px-2 py-1">
+              {style.tag}
+            </span>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 p-6 overflow-y-auto">
+          <button onClick={onClose} className="absolute top-4 right-4 text-black dark:text-white hover:opacity-60 transition-opacity">
+            <X className="w-5 h-5" />
+          </button>
+
+          <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">{style.theme}</p>
+          <h2 className="font-black text-lg uppercase tracking-wide text-black dark:text-white mb-2 leading-tight pr-6">{style.name}</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-5">{style.desc}</p>
+
+          <div className="flex items-center justify-between mb-5">
+            <span className="font-black text-2xl text-black dark:text-white">${style.price}</span>
+            <span className="text-xs text-gray-400">per pair</span>
+          </div>
+
+          {/* Qty */}
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-[10px] font-black uppercase tracking-widest text-black dark:text-white">Qty</span>
+            <div className="flex items-center gap-3">
+              <button onClick={() => setQty(q => Math.max(1, q - 1))}
+                className="w-8 h-8 border-2 border-black/20 dark:border-white/20 flex items-center justify-center text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                <Minus className="w-3 h-3" />
+              </button>
+              <span className="font-black text-lg text-black dark:text-white w-6 text-center">{qty}</span>
+              <button onClick={() => setQty(q => q + 1)}
+                className="w-8 h-8 border-2 border-black/20 dark:border-white/20 flex items-center justify-center text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                <Plus className="w-3 h-3" />
+              </button>
+            </div>
+            <span className="font-black text-sm text-black dark:text-white ml-auto">${(style.price * qty).toFixed(2)}</span>
+          </div>
+
+          <button onClick={handleAdd}
+            className="w-full bg-black dark:bg-white text-white dark:text-black py-3.5 text-xs font-black uppercase tracking-widest hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+            <ShoppingBag className="w-4 h-4" /> Add to Cart
+          </button>
+
+          <p className="text-[10px] text-gray-400 text-center mt-3">
+            No payment now — we&apos;ll send a design preview, then a secure payment link once you approve.
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ShopPage() {
+  const [modal, setModal] = useState<Style | null>(null)
+  const { add } = useCart()
+
   return (
     <div>
+      {modal && <OrderModal style={modal} onClose={() => setModal(null)} />}
+
       {/* Header */}
       <section className="bg-white dark:bg-[#111111] border-b border-black/10 dark:border-white/10 py-20 px-6 text-center transition-colors">
         <p className="text-xs tracking-[0.4em] text-gray-400 uppercase mb-3">The Collection</p>
@@ -95,8 +176,9 @@ export default function ShopPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {STYLES.map((style) => (
-              <Link key={style.name} href="/custom" className="group bg-white dark:bg-[#1a1a1a] hover:shadow-lg transition-all duration-300 block">
-                <div className="relative h-60 overflow-hidden">
+              <div key={style.name} className="group bg-white dark:bg-[#1a1a1a] hover:shadow-lg transition-all duration-300 flex flex-col">
+                {/* Clickable image area → opens modal */}
+                <button onClick={() => setModal(style)} className="relative h-60 overflow-hidden text-left block w-full">
                   <Image
                     src={style.img}
                     alt={style.name}
@@ -112,18 +194,25 @@ export default function ShopPage() {
                   <span className="absolute bottom-3 right-3 text-[9px] font-bold uppercase tracking-widest bg-white/90 dark:bg-black/90 text-gray-600 dark:text-gray-300 px-2 py-1">
                     {style.theme}
                   </span>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-black text-base uppercase tracking-wide mb-2 text-black dark:text-white">{style.name}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 leading-relaxed">{style.desc}</p>
+                  <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                    <span className="bg-white text-black text-[10px] font-black uppercase tracking-widest px-4 py-2">View Details</span>
+                  </span>
+                </button>
+
+                <div className="p-5 flex flex-col flex-1">
+                  <h3 className="font-black text-sm uppercase tracking-wide mb-1 text-black dark:text-white">{style.name}</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-4 leading-relaxed flex-1">{style.desc}</p>
                   <div className="flex items-center justify-between">
                     <span className="font-black text-xl text-black dark:text-white">${style.price}</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest border-b-2 border-black dark:border-white pb-0.5 text-black dark:text-white group-hover:text-gray-500 dark:group-hover:text-gray-400 group-hover:border-gray-400 transition-colors">
-                      Order →
-                    </span>
+                    <button
+                      onClick={() => add({ name: style.name, price: style.price, img: style.img })}
+                      className="flex items-center gap-1.5 bg-black dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-widest px-3 py-2 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+                    >
+                      <ShoppingBag className="w-3 h-3" /> Add to Cart
+                    </button>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
