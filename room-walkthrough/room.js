@@ -161,56 +161,58 @@ export function buildRoom(scene) {
   add(new THREE.PlaneGeometry(3.6, .28), tm, RW / 2 - .2, RH - .15, RD - .405, { cast: false, recv: false });
   R.titleTex = titleTex;
 
-  // ——— Display cabinets ×3 on the left wall (d 1.0–3.4) ———
+  // ——— Collection wall (left wall, d 0.9–3.5): no cabinets. A slatted walnut panel washed in amber, a floating
+  // sideboard (manga hidden inside), a few hero pieces on top, and the cards in individual floating frames ———
   const shelfGlow = new THREE.MeshBasicMaterial({ color: '#ffb768' }); R.mats.shelf = shelfGlow;
-  const figCols = ['#2f8f4e', '#c8352b', '#e3c043', '#e68a2e', '#7a4fa8', '#3b6fb4', '#f2e9dc', '#d06aa0', '#5bb5a2', '#8a5a3a'];
-  const rr = mulberry(21);
-  for (let c = 0; c < 3; c++) {
-    const d0 = 1.0 + c * .8;
-    box(.42, .04, .8, black, 0, 0, d0); box(.42, .04, .8, black, 0, 1.96, d0);
-    box(.42, 2.0, .03, black, 0, 0, d0); box(.42, 2.0, .03, black, 0, 0, d0 + .77);
-    box(.02, 1.92, .74, glass, .4, .04, d0 + .03, { cast: false });
-    for (let s = 0; s < 5; s++) {
-      const y = .04 + s * .39;
-      if (s) box(.38, .015, .74, std('#2a2a2c', { roughness: .3 }), 0, y, d0 + .03, { cast: false });
-      box(.01, .008, .72, shelfGlow, .37, y + .36, d0 + .04, { cast: false, recv: false });
-      // collectibles on each shelf
-      const n = 4;
-      for (let k = 0; k < n; k++) {
-        const dd = d0 + .1 + k * .19, kind = (c * 5 + s + k) % 6, col = figCols[Math.floor(rr() * figCols.length)];
-        if (c === 1 && s === 2) continue;
-        if (kind < 3) {               // a small figure
-          const h = .12 + rr() * .1; add(new THREE.CylinderGeometry(.025, .03, h, 10), std(col, { roughness: .5 }), .2, y + .015 + h / 2, dd);
-          add(new THREE.SphereGeometry(.028, 12, 10), std('#e9c39c', { roughness: .6 }), .2, y + .015 + h + .025, dd);
-          add(new THREE.CylinderGeometry(.04, .04, .012, 16), black, .2, y + .021, dd);
-        } else if (kind === 3) {      // a fruit replica on a stand
-          add(new THREE.SphereGeometry(.04, 16, 12), std(['#6b3fa0', '#e0612b', '#c9234a'][Math.floor(rr() * 3)], { roughness: .35 }), .2, y + .075, dd);
-          add(new THREE.CylinderGeometry(.03, .035, .03, 12), black, .2, y + .03, dd);
-        } else if (kind === 4) {      // a card standing upright in a clear stand
-          add(new THREE.BoxGeometry(.004, .088, .063), std(figCols[Math.floor(rr() * 10)], { emissive: '#221100', roughness: .3 }), .2, y + .06, dd, { ry: 0 });
-          add(new THREE.BoxGeometry(.03, .012, .07), glass, .2, y + .02, dd, { cast: false });
-        } else {                      // manga volumes
-          for (let v = 0; v < 5; v++) add(new THREE.BoxGeometry(.11, .17, .018), std(figCols[(v + k) % 10], { roughness: .7 }), .17, y + .1, dd - .04 + v * .02);
-        }
-      }
-    }
-    R.lights['cab' + c] = W(.25, 1.2, d0 + .4);
-  }
-  // the centrepiece shelf (middle cabinet, third shelf): a large swordsman figure, three fruits, a hat, cards
+  const slat = std('#4a3020', { roughness: .6 });
+  for (let dd = .92; dd < 3.48; dd += .06) box(.025, 2.3, .03, slat, 0, 0, dd, { cast: false });
+  box(.02, .015, 2.6, shelfGlow, .03, 2.31, .9, { cast: false, recv: false });            // wall-wash strip over the panel
+  const side = std('#33221a', { roughness: .5 });
+  box(.45, .5, 2.2, side, .03, .25, 1.1);                                                  // floating sideboard
+  for (const dd of [1.65, 2.2, 2.75]) box(.004, .44, .005, std('#1c130d'), .48, .28, dd, { cast: false });   // door seams
+  box(.43, .012, 2.16, shelfGlow, .04, .236, 1.12, { cast: false, recv: false });         // under-glow onto the floor
+  const top = .75;
+  // centrepiece: a swordsman figure on a black plinth under a clear acrylic cover, spotlit
   {
-    const y = .04 + 2 * .39 + .015, dc = 2.2;
-    add(new THREE.CylinderGeometry(.08, .1, .04, 24), black, .2, y + .02, dc);
-    const body = std('#2c7a45', { roughness: .45 });
-    add(new THREE.CylinderGeometry(.04, .055, .2, 14), body, .2, y + .14, dc);
-    add(new THREE.SphereGeometry(.038, 16, 12), std('#e3bd95', { roughness: .55 }), .2, y + .28, dc);
-    add(new THREE.SphereGeometry(.03, 12, 10), std('#4fae5c', { roughness: .6 }), .2, y + .3, dc);
+    const dc = 2.2;
+    box(.18, .12, .18, black, .16, top, dc - .09);
+    const body = std('#2c7a45', { roughness: .45 }), y = top + .12;
+    add(new THREE.CylinderGeometry(.055, .075, .28, 16), body, .25, y + .14, dc);
+    add(new THREE.SphereGeometry(.05, 18, 14), std('#e3bd95', { roughness: .55 }), .25, y + .33, dc);
+    add(new THREE.SphereGeometry(.04, 14, 12), std('#4fae5c', { roughness: .6 }), .25, y + .36, dc);
     const steel = std('#e6ecef', { metalness: .9, roughness: .15 });
-    add(new THREE.BoxGeometry(.006, .26, .012), steel, .23, y + .22, dc - .07, { rz: .5 });
-    add(new THREE.BoxGeometry(.006, .26, .012), steel, .23, y + .22, dc + .07, { rz: -.5 });
-    for (const [k, col] of [[-1, '#6b3fa0'], [1, '#e0612b']]) add(new THREE.SphereGeometry(.035, 16, 12), std(col, { roughness: .3 }), .22, y + .05, dc + k * .17);
-    add(new THREE.CylinderGeometry(.06, .07, .01, 24), std('#d9b44a', { roughness: .8 }), .2, y + .43, dc - .25);   // the hat, on top of the next shelf front
-    R.centre = W(.2, y + .18, dc);
+    add(new THREE.BoxGeometry(.008, .34, .016), steel, .29, y + .24, dc - .09, { rx: .5 });
+    add(new THREE.BoxGeometry(.008, .34, .016), steel, .29, y + .24, dc + .09, { rx: -.5 });
+    box(.26, .44, .26, glass, .12, y, dc - .13, { cast: false });                          // acrylic cover
+    R.centre = W(.25, y + .2, dc);
   }
+  // two fruit replicas on small stands, a ship model, the straw hat
+  for (const [dd, col] of [[1.4, '#6b3fa0'], [1.62, '#e0612b']]) {
+    add(new THREE.CylinderGeometry(.03, .04, .05, 14), black, .25, top + .025, dd);
+    add(new THREE.SphereGeometry(.05, 18, 14), std(col, { roughness: .35 }), .25, top + .1, dd);
+  }
+  {
+    const dd = 2.85, hull = std('#6b3d1e', { roughness: .5 }), sail = std('#f2ead8', { roughness: .9, side: THREE.DoubleSide });
+    box(.09, .07, .36, hull, .2, top, dd - .18);
+    add(new THREE.PlaneGeometry(.2, .2), sail, .245, top + .2, dd - .06, { ry: Math.PI / 2, cast: false });
+    add(new THREE.PlaneGeometry(.16, .16), sail, .245, top + .17, dd + .1, { ry: Math.PI / 2, cast: false });
+  }
+  add(new THREE.CylinderGeometry(.11, .12, .012, 28), std('#d9b44a', { roughness: .85 }), .26, top + .006, 3.17);
+  add(new THREE.CylinderGeometry(.065, .07, .07, 24), std('#d9b44a', { roughness: .85 }), .26, top + .045, 3.17);
+  add(new THREE.CylinderGeometry(.071, .071, .02, 24), std('#b32020', { roughness: .7 }), .26, top + .03, 3.17);
+  // the cards: each in its own floating frame, one neat row above the sideboard
+  const cardCols = ['#c8352b', '#2f8f4e', '#e3c043', '#3b6fb4', '#7a4fa8'];
+  cardCols.forEach((col, i) => {
+    const dd = 1.5 + i * .3;
+    if (Math.abs(dd - 2.1) < .01) return;                                                 // leave the space above the centrepiece clear
+    box(.025, .22, .17, black, .03, 1.38, dd - .085);
+    box(.004, .2, .15, std('#efe7d6', { roughness: .9 }), .056, 1.39, dd - .075, { cast: false });
+    box(.004, .088, .063, std(col, { emissive: col, emissiveIntensity: .08, roughness: .3 }), .06, 1.446, dd - .0315, { cast: false });
+  });
+  // a larger framed card above the centrepiece
+  box(.025, .32, .24, black, .03, 1.5, 2.08); box(.004, .3, .22, std('#efe7d6', { roughness: .9 }), .056, 1.51, 2.09, { cast: false });
+  box(.004, .132, .095, std('#2f8f4e', { emissive: '#2f8f4e', emissiveIntensity: .08, roughness: .3 }), .06, 1.594, 2.152, { cast: false });
+  R.lights.cab0 = W(.6, 1.9, 1.5); R.lights.cab1 = W(.55, 1.75, 2.2); R.lights.cab2 = W(.6, 1.9, 2.9);
 
   // ——— Bed: headboard on the left wall, d 4.55–6.15 ———
   box(2.0, .28, 1.6, walnut, .1, 0, 4.55); box(.1, 1.0, 1.7, std('#2a2420', { roughness: .9 }), 0, 0, 4.5);

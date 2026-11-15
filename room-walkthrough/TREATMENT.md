@@ -10,7 +10,7 @@ x is measured from the left wall, z from the front (door) wall.
 | Item | Position | Size |
 |---|---|---|
 | Door | front wall, left, x 0.15–1.05 | 0.9 m |
-| Glass display cabinets ×3 | left wall, z 1.0–3.4 | 3 × 0.8 w, 0.42 d, 2.0 h |
+| Collection wall (no cabinets) | left wall, d 0.9–3.5 | slatted walnut panel + floating sideboard 2.2 × 0.45, cards in individual frames above, centrepiece under an acrylic cover |
 | Bed (headboard on the left wall) | x 0–2.1, z 4.55–6.15 | 1.6 × 2.0 m |
 | Nightstand | left wall, z 4.05–4.5 | 0.45 |
 | Gaming desk | right wall, z 0.5–2.27 | 1.77 × 0.80 m |
@@ -28,7 +28,7 @@ x is measured from the left wall, z from the front (door) wall.
 
 1. **The relay of rooms.** The tilt-shift band jumps between zones (display, desk, sofa, bed), with a hard cut on every beat. *Against it:* it would read as a product catalogue, with no one in it.
 2. **Before/after.** The plain white room as it is now, time-lapsed into the new one as furniture builds itself. *Against it:* half the film would be spent on the old room, which the user doesn't want to see.
-3. **One day in the room, dawn to night, with one tiny occupant (chosen).** From a single high vantage, the sun sweeps through the balcony glass while a tiny figure (Shiven) walks the real route: in through the door, past the collection, to the desk, the sofa with a friend, and finally bed. Night brings on the amber lights. *Why:* it is a walkthrough with a reason. The route proves the circulation, the light proves the mood, and the ending drops into the floor plan the user asked for.
+3. **One day in the room, dawn to night, with one tiny occupant (chosen).** From a single high vantage, the sun sweeps through the balcony glass while a tiny figure (Shiven) walks the real route: in through the door, past the collection wall, to the desk, the sofa with a friend, and finally bed. Night brings on the amber lights. *Why:* it is a walkthrough with a reason. The route proves the circulation, the light proves the mood, and the ending drops into the floor plan the user asked for.
 
 **Opening:** mid-time-lapse at dawn. Sunlight rakes in from the balcony and the sharp band is already on the empty doorway.
 **Ending:** the camera rises to straight top-down, the lens un-tilts (the band widens to full sharpness) and the model becomes the labelled floor plan, held 5 s.
@@ -48,10 +48,10 @@ A tiny figure lives one sped-up day in a model of his own room, until night fall
 | # | Time | Framing | Angle / move | Why |
 |---|---|---|---|---|
 | 1 | 0.0–7.2 | High oblique wide of the whole room | 50° pitch from the front-left corner, very slow slide right | Sets the model and the place. Sun beams sweep (×120); the band sits on the door, which opens on the downbeat of bar 2 |
-| 2 | 7.2–12.0 | Medium-wide | The band follows the figure along the display cabinets; the camera pushes slowly | "This one": our occupant, and the collection he walks past. Label: COLLECTION WALL |
+| 2 | 7.2–12.0 | Medium-wide | The band follows the figure along the display cabinets; the camera pushes slowly | "This one": our occupant, and the collection he walks past. Label: COLLECTION WALL · CURATED, NO CABINETS |
 | 3 | 12.0–16.8 | Medium-wide over the desk | Lateral track along the right wall | The desk zone, with 1 landscape + 1 portrait monitor and the PC on the desk. Afternoon light races across. Label: DESK 177 × 80 |
 | 4 | 16.8–24.0 | Wide, slightly higher | Slow push toward the sofa; the band racks from desk to sofa | Dusk → night. Cove lights click on on beats 1–4, then the RGB and the TV glow. A friend arrives; both sit. Label: SOFA → TV 1.85 m |
-| 5 | 24.0–28.8 | Close, at actor height | Continuous dive with a speed ramp ×120 → ×1; the band narrows to a sliver | Native move: time stops at the lit cabinet. Silence, one glockenspiel note. Label: ×1 REAL TIME |
+| 5 | 24.0–28.8 | Close, at actor height | Continuous dive with a speed ramp ×120 → ×1; the band narrows to a sliver | Native move: time stops at the spotlit centrepiece. Silence, one glockenspiel note. Label: ×1 REAL TIME |
 | 6 | 28.8–36.0 | Top-down | Vertical rise with a slow rotation into a straight plan; the lens un-tilts | The scale reveal becomes the layout: labels and dimensions fade in on the plan; held ≥ 5 s |
 
 That makes five camera moves (slide, follow, lateral track, push/rack, dive, rise). The signature shot is the dive into real time.

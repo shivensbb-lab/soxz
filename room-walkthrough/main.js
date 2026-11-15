@@ -35,7 +35,7 @@ const coveL = [
   [P(AMB, W(RW - .7, 2.3, 1.6), 5), P(AMB, W(RW - .7, 2.3, 4.8), 5)],
   [P(AMB, W(1.4, 1.4, .5), 4), P(AMB, W(2.8, 1.4, .5), 4)],
 ];
-const cabL = [0, 1, 2].map(c => P('#ffb35e', R.lights['cab' + c], 1.6, 1.2));
+const cabL = [0, 1, 2].map(c => P('#ffb35e', R.lights['cab' + c], c === 1 ? 1.4 : 1.8, 1.2));
 const pcL = P('#3ad1ff', R.lights.pc, 1.8), tvL = P('#6fa8ff', R.lights.tv, 3.2), flagL = P('#ff9a40', R.lights.flag, 1.4), lampL = P('#ffc27a', W(.3, .9, 4.27), 2.4);
 const fill = new THREE.PointLight('#ffd7a8', 0, 12, 1.2); fill.position.copy(W(2, 4.5, 3.2)); scene.add(fill);
 

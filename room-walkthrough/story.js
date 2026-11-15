@@ -42,7 +42,7 @@ export function worldT(t) {
 // Captions: room signage panels, in the lower blur band
 export const CAPS = [
   { t0: 2.7, t1: 6.9, text: 'ENTRANCE · FRONT LEFT' },
-  { t0: 7.5, t1: 11.8, text: 'COLLECTION WALL · 3 GLASS CABINETS' },
+  { t0: 7.5, t1: 11.8, text: 'COLLECTION WALL · CURATED, NO CABINETS' },
   { t0: 12.3, t1: 16.6, text: 'DESK 177 × 80 · 1 LANDSCAPE + 1 PORTRAIT' },
   { t0: 20.7, t1: 23.8, text: 'SOFA FACES THE TV · 1.85 m' },
   { t0: 25.2, t1: 28.6, text: 'THE CENTREPIECE' },
@@ -51,7 +51,7 @@ export const CAPS = [
 // Plan labels (room coordinates: x from the left wall, d from the front wall)
 export const LABELS = [
   { x: 0.55, d: -0.35, text: 'DOOR', beat: 0 },
-  { x: 0.62, d: 2.2, text: 'DISPLAY ×3', beat: 1 },
+  { x: 0.62, d: 2.2, text: 'COLLECTION', beat: 1 },
   { x: 3.25, d: 1.38, text: 'DESK 177×80', beat: 2 },
   { x: 1.7, d: 3.5, text: 'SOFA 190', beat: 3 },
   { x: 3.5, d: 3.5, text: 'TV 55"', beat: 4 },
