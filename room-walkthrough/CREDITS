@@ -1,0 +1,21 @@
+Room 4×6.5 — third-party assets in the film
+
+Fonts
+- Overpass and Overpass Mono, by Delve Withrington, Dave Bailey and Thomas Jockin — SIL Open Font License 1.1
+  Source: https://github.com/google/fonts/tree/main/ofl/overpass and /ofl/overpassmono (licence text: fonts/OFL.txt)
+
+Music samples
+- Marimba, glockenspiel, vibraphone, hand chimes, woodblock: Versilian Community Sample Library (VCSL), Versilian Studios — CC0 1.0
+  Source: https://github.com/sgossner/VCSL (played through the Lemo-Opuscar sampler)
+- Music box: synthesised (modal synthesis in the library's pluck.py); no third-party recording
+
+Sound effects and ambience
+- All synthesised procedurally (footsteps, clicks, door, hum, hiss, birds); no third-party recordings
+
+Picture
+- Everything drawn in code with three.js (MIT licence, https://threejs.org); no images, stock footage or video generation.
+  The room model, figures, posters, flag, rug chart and monitor wallpapers are original drawings made for this film.
+  No franchise names, logos or characters appear.
+
+Voice
+- None (no narration)

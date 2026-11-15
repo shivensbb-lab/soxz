@@ -1,0 +1,5 @@
+.tools/
+out/
+stills/
+events.json
+*.lock
